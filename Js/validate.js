@@ -3,13 +3,14 @@ export function validateForm1(){
     const date = document.querySelector('#date');
     const cpf = document.querySelector('#cpf');
     const regex = /[0-9]/;
-    if(name.value !== '' && date.value !== '' && cpf.value.length === 11 && !regex.test(name.value) && validateAge())
+    if(name.value !== '' && date.value !== '' && cpf.value.length === 11 && cpf.value !== '00000000000' && !regex.test(name.value) && validateAge())
     {
         name.classList.add('sucess');
         date.classList.add('sucess');
         cpf.classList.add('sucess');
         return true
     }
+        validateAge()
         if(name.value === '' || regex.test(name.value))
         {
             name.classList.remove('sucess');
@@ -20,13 +21,15 @@ export function validateForm1(){
             name.classList.remove('error');
             name.classList.add('sucess');
         }
-        if(cpf.value.length !== 11)
+        if(cpf.value.length !== 11 && cpf.value ==='00000000000')
         {
+            console.log('erro')
             cpf.classList.remove('sucess');
             cpf.classList.add('error');
         }
-        if(cpf.value.length === 11)
+        if(cpf.value.length === 11 && cpf.value !=='00000000000')
         {
+            console.log('entrei')
             cpf.classList.remove('error');
             cpf.classList.add('sucess');
         }
@@ -113,7 +116,7 @@ function validateAge(){
     {
         age--;
     }
-    if(age >= 18)
+    if(age >= 0)
     {
         date.classList.remove('error');
         date.classList.add('sucess');
@@ -121,6 +124,5 @@ function validateAge(){
     }
         date.classList.remove('sucess');
         date.classList.add('error');
-        alert('Idade menor que 18 anos')
         return false
 }

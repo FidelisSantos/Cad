@@ -1,38 +1,33 @@
-import * as e from './template.js';
+import insertHtml from './template.js';
 import * as data from './data.js'
 import * as validate from './validate.js'
 
-const btnA = document.querySelector('#advanced')
-btnA.addEventListener('click', (event) => {
-
-    event.preventDefault();
+$('#advanced').on('click', function (e) 
+{
+    e.preventDefault();
     if(validate.validateForm1())
     {
-        e.validateForm();
+        $('#adress-tab').tab('show');
     }
-    
 })
 
-const btnB = document.querySelector('#return')
-btnB.addEventListener('click', () => {
-    e.validateReturn();
+$('#return').on('click', function (e) 
+{
+    $('#dice-tab').tab('show');
 })
 
+$('#next').on('click', function (e) 
+{
+    e.preventDefault();
+    if(validate.validateForm1() && validate.validateAdress())
+    {
+        insertHtml();
+        $('#finish-tab').tab('show');
+    }
+})
 const btnC = document.querySelector('#searchBtn');
 btnC.addEventListener('click', () => {
     data.searchCep();
 })
 
-const btnD = document.querySelector('#next');
-btnD.addEventListener('click', (event) => {
-    event.preventDefault();
-    if(validate.validateAdress())
-    {
-        e.validateFinish();
-    }  
-})
 
-const btnE = document.querySelector('#edit')
-btnE.addEventListener('click', () => {
-    e.validadeteEdit();
-})
