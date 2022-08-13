@@ -116,7 +116,7 @@ function validateAge(){
     {
         age--;
     }
-    if(age >= 0)
+    if((age -1)>= 0)
     {
         date.classList.remove('error');
         date.classList.add('sucess');
