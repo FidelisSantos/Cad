@@ -112,11 +112,11 @@ function validateAge(){
     let bday = new Date(date.value);
     let age = today.getFullYear() -  bday.getFullYear();
     let month = today.getMonth() - bday.getMonth();
-    if(month < 0 || (month === 0 && today.getDate() < bday.getDate()))
+    if(month < 0 || (month === 0 && today.getDate() <= bday.getDate()))
     {
         age--;
     }
-    if((age -1)>= 0)
+    if(age >= 0)
     {
         date.classList.remove('error');
         date.classList.add('sucess');
