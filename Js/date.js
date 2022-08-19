@@ -1,4 +1,3 @@
-
 export function dateFormatter() {
   const date = document.querySelector('#date').value;
   let myDate = new Date(date);
@@ -7,7 +6,6 @@ export function dateFormatter() {
   var dateFormatter = formatter.format(myDate);
   return dateFormatter;
 }
-
 
 export function calculateDays() {
   const date = document.querySelector('#date').value;
