@@ -20,8 +20,8 @@ $('#next').on('click', function (e) {
         $('#finish-tab').tab('show');
     }
 })
-const btnSearchCep = document.querySelector('#searchBtn');
-btnSearchCep.addEventListener('click', () => {
+
+$('#searchBtn').on('click', () => {
     cep.searchCep();
 })
 
