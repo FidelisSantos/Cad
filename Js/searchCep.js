@@ -25,6 +25,7 @@ function validateCity(result) {
     }
     return false
 }
+
 function validateAdress(result) {
     if (result.logradouro !== '') {
         const adressInput = document.getElementById('adress');
@@ -44,8 +45,6 @@ function validateDisctrict(result) {
     }
     return false
 }
-
-
 
 export function validateState(result) {
     if (result.uf !== '') {
