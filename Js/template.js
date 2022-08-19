@@ -1,6 +1,6 @@
-import {calculateDays, dateFormatter } from "./date.js";
+import { calculateDays, dateFormatter }  from "./date.js";
 
-export default function insertHtml(){
+export default function insertHtml() {
     const div = document.querySelector('#end');
     const name = document.querySelector('#name').value;
     const date = dateFormatter();
@@ -11,30 +11,28 @@ export default function insertHtml(){
     const complement = document.querySelector('#addressComplement').value;
     const addressNumber = document.querySelector('#addressNumber').value;
     const message = calculateDays();
-    
-    if(complement === '')
-    {
+
+    if (complement === '') {
         let finish = `
-        <p>Nome: `+(name.toUpperCase())+`</p><br>
-        <p>CPF: `+cpf+`</p><br>
-        <p>Data de Nascimento: `+date+`</p>
+        <p>Nome: `+ (name.toUpperCase()) + `</p><br>
+        <p>CPF: `+ cpf + `</p><br>
+        <p>Data de Nascimento: `+ date + `</p>
         <br>
-        <p>`+adress+`,`+city+`, `+state+`, `+addressNumber+` </p>
+        <p>`+ adress + `,` + city + `, ` + state + `, ` + addressNumber + ` </p>
         <br>
-        <p>`+message+` </p>
+        <p>`+ message + ` </p>
         `
         div.innerHTML = finish;
     }
-    else
-    {
+    else {
         let finish = `
-        <p>Nome: `+(name.toUpperCase())+`</p><br>
-        <p>CPF: `+cpf+`</p><br>
-        <p>Data de Nascimento: `+date+`</p>
+        <p>Nome: `+ (name.toUpperCase()) + `</p><br>
+        <p>CPF: `+ cpf + `</p><br>
+        <p>Data de Nascimento: `+ date + `</p>
         <br>
-        <p>`+adress+`,`+city+`, `+state+`, `+addressNumber+` , `+complement+`</p>
+        <p>`+ adress + `,` + city + `, ` + state + `, ` + addressNumber + ` , ` + complement + `</p>
         <br>
-        <p>`+message+` </p>
+        <p>`+ message + ` </p>
         `
         div.innerHTML = finish;
     }

@@ -1,33 +1,28 @@
 import insertHtml from './template.js';
-import * as data from './data.js'
+import * as cep from './searchCep.js'
 import * as validate from './validate.js'
 
-$('#advanced').on('click', function (e) 
-{
+$('#advanced').on('click', function (e) {
     e.preventDefault();
-    if(validate.validateForm1())
-    {
+    if (validate.validatePersonalInformation()) {
         $('#adress-tab').tab('show');
     }
 })
 
-$('#return').on('click', function (e) 
-{
+$('#return').on('click', function (e) {
     $('#dice-tab').tab('show');
 })
 
-$('#next').on('click', function (e) 
-{
+$('#next').on('click', function (e) {
     e.preventDefault();
-    if(validate.validateForm1() && validate.validateAdress())
-    {
+    if (validate.validatePersonalInformation() && validate.validateAdress()) {
         insertHtml();
         $('#finish-tab').tab('show');
     }
 })
-const btnC = document.querySelector('#searchBtn');
-btnC.addEventListener('click', () => {
-    data.searchCep();
+const btnSearchCep = document.querySelector('#searchBtn');
+btnSearchCep.addEventListener('click', () => {
+    cep.searchCep();
 })
 
 
