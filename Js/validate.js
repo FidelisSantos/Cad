@@ -18,7 +18,7 @@ export function validatePersonalInformation() {
         name.classList.remove('error');
         name.classList.add('sucess');
     }
-    if (cpf.value.length !== 11 && cpf.value === '00000000000') {
+    if (cpf.value.length !== 11 || cpf.value === '00000000000') {
         console.log('erro')
         cpf.classList.remove('sucess');
         cpf.classList.add('error');
@@ -74,7 +74,7 @@ export function validateAdress() {
         addressNumber.classList.remove('error');
         addressNumber.classList.add('sucess');
     }
-    if (addressNumber.value === '' && addressNumber.value <= 0) {
+    if (addressNumber.value === '' || addressNumber.value <= 0) {
         addressNumber.classList.remove('sucess');
         addressNumber.classList.add('error');
     }
