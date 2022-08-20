@@ -1,4 +1,4 @@
-import insertHtml from './template.js';
+import { insertHtml as template } from './template.js';
 import * as cep from './searchCep.js'
 import * as validate from './validate.js'
 
@@ -16,7 +16,7 @@ $('#return').on('click', function (e) {
 $('#next').on('click', function (e) {
     e.preventDefault();
     if (validate.validatePersonalInformation() && validate.validateAdress()) {
-        insertHtml();
+        template();
         $('#finish-tab').tab('show');
     }
 })

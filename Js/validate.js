@@ -1,35 +1,36 @@
+import { toggleActiveClass as template } from './template.js';
+
 export function validatePersonalInformation() {
     const name = document.querySelector('#name');
     const date = document.querySelector('#date');
     const cpf = document.querySelector('#cpf');
+    let today = new Date();
+    let bday = new Date(date.value);
+    let age = today.getFullYear() - bday.getFullYear();
+    let month = today.getMonth() - bday.getMonth();
+    let error = 0;
     const regex = /[0-9]/;
-    if (name.value !== '' && date.value !== '' && cpf.value.length === 11 && cpf.value !== '00000000000' && !regex.test(name.value) && validateAge()) {
-        name.classList.add('sucess');
-        date.classList.add('sucess');
-        cpf.classList.add('sucess');
-        return true
+    const validate = {
+        name: () => {
+            let status = (name.value !== '' && !regex.test(name.value));
+            error += template(name, status);
+        },
+        cpf: () => {
+            let status = (cpf.value.length === 11 && cpf.value !== '00000000000');
+            error += template(cpf, status);
+        },
+        date: () => {
+            if (month < 0 || (month === 0 && today.getDate() <= bday.getDate())) {
+                age--;
+            }
+            let status = (age >= 0);
+            error += template(date, status);
+        }
     }
-    validateAge()
-    if (name.value === '' || regex.test(name.value)) {
-        name.classList.remove('sucess');
-        name.classList.add('error');
-    }
-    if (name.value !== '' && !regex.test(name.value)) {
-        name.classList.remove('error');
-        name.classList.add('sucess');
-    }
-    if (cpf.value.length !== 11 || cpf.value === '00000000000') {
-        console.log('erro')
-        cpf.classList.remove('sucess');
-        cpf.classList.add('error');
-    }
-    if (cpf.value.length === 11 && cpf.value !== '00000000000') {
-        console.log('entrei')
-        cpf.classList.remove('error');
-        cpf.classList.add('sucess');
-    }
-
-    return false
+    Object.values(validate).forEach((callback) => {
+        callback();
+    })
+    return !error
 }
 
 export function validateAdress() {
@@ -38,72 +39,31 @@ export function validateAdress() {
     const district = document.querySelector('#district');
     const addressNumber = document.querySelector('#addressNumber');
     const city = document.querySelector('#city');
-    if (cep.value !== '' && adress.value !== '' && district.value !== '' && addressNumber.value !== '' && addressNumber.value > 0 && city.value !== '') {
-        city.classList.add('sucess');
-        cep.classList.add('sucess');
-        adress.classList.add('sucess');
-        district.classList.add('sucess');
-        addressNumber.classList.add('sucess');
-        return true
+    let error = 0;
+    const validate = {
+        cep: () => {
+            let status = (cep.value !== '');
+            error += template(cep, status);
+        },
+        adress: () => {
+            let status = (adress.value !== '');
+            error += template(adress, status);
+        },
+        district: () => {
+            let status = (district.value !== '');
+            error += template(district, status);
+        },
+        addressNumber: () => {
+            let status = (addressNumber.value !== '' && addressNumber.value > 0);
+            error += template(addressNumber, status);
+        },
+        city: () => {
+            let status = (city.value !== '');
+            error += template(city, status);
+        }
     }
-    if (cep.value === '') {
-        cep.classList.remove('sucess');
-        cep.classList.add('error');
-    }
-    if (cep.value !== '') {
-        cep.classList.remove('error');
-        cep.classList.add('sucess');
-    }
-    if (adress.value === '') {
-        adress.classList.remove('sucess');
-        adress.classList.add('error');
-    }
-    if (adress.value !== '') {
-        adress.classList.remove('error');
-        adress.classList.add('sucess');
-    }
-    if (district.value === '') {
-        district.classList.remove('sucess');
-        district.classList.add('error');
-    }
-    if (district.value !== '') {
-        district.classList.remove('error');
-        district.classList.add('sucess');
-    }
-    if (addressNumber.value !== '' && addressNumber.value > 0) {
-        addressNumber.classList.remove('error');
-        addressNumber.classList.add('sucess');
-    }
-    if (addressNumber.value === '' || addressNumber.value <= 0) {
-        addressNumber.classList.remove('sucess');
-        addressNumber.classList.add('error');
-    }
-    if (city.value === '') {
-        city.classList.remove('sucess');
-        city.classList.add('error');
-    }
-    if (city.value !== '') {
-        city.classList.remove('error');
-        city.classList.add('sucess');
-    }
-    return false
-}
-
-function validateAge() {
-    const date = document.querySelector('#date');
-    let today = new Date();
-    let bday = new Date(date.value);
-    let age = today.getFullYear() - bday.getFullYear();
-    let month = today.getMonth() - bday.getMonth();
-    if (month < 0 || (month === 0 && today.getDate() <= bday.getDate())) {
-        age--;
-    }
-    if (age >= 0) {
-        date.classList.remove('error');
-        date.classList.add('sucess');
-        return true
-    }
-    date.classList.remove('sucess');
-    date.classList.add('error');
-    return false
+    Object.values(validate).forEach((callback) => {
+        callback();
+    })
+    return !error
 }

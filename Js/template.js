@@ -1,6 +1,6 @@
-import { calculateDays, dateFormatter }  from "./date.js";
+import { calculateDays, dateFormatter } from "./date.js";
 
-export default function insertHtml() {
+export function insertHtml() {
     const div = document.querySelector('#end');
     const name = document.querySelector('#name').value;
     const date = dateFormatter();
@@ -36,4 +36,14 @@ export default function insertHtml() {
         `
         div.innerHTML = finish;
     }
+}
+export function toggleActiveClass(el, status) {
+    if (status) {
+        el.classList.add('sucess');
+        el.classList.remove('error');
+        return 0;
+    }
+    el.classList.remove('sucess');
+    el.classList.add('error');
+    return 1;
 }
