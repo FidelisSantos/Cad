@@ -1,5 +1,5 @@
 import { insertHtml as template } from './template.js';
-import * as cep from './searchCep.js'
+import { searchCep as cep } from './searchCep.js'
 import * as validate from './validate.js'
 
 $('#advanced').on('click', function (e) {
@@ -22,7 +22,7 @@ $('#next').on('click', function (e) {
 })
 
 $('#searchBtn').on('click', () => {
-    cep.searchCep();
+    cep();
 })
 
 
