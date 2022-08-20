@@ -8,7 +8,7 @@ export function searchCep() {
         success: function (result) {
             let myData = result;
             validateState(myData);
-            return validateCity(myData) && validateAdress(myData) && validateDisctrict(myData) && validateState(myData);
+            return validateCity(myData) && validateAdress(myData) && validateDistrict(myData) && validateState(myData);
         },
         erro: function () {
             alert('Não foi Possível Encontrar o Cep');
@@ -26,30 +26,30 @@ function validateCity(result) {
     return false
 }
 
-function validateAdress(result) {
-    if (result.logradouro !== '') {
+function validateAdress(adress) {
+    if (adress.logradouro !== '') {
         const adressInput = document.getElementById('adress');
-        adressInput.value = result.logradouro;
+        adressInput.value = adress.logradouro;
         adressInput.disabled = true;
         return true
     }
     return false
 }
 
-function validateDisctrict(result) {
-    if (result.bairro !== '') {
+function validateDistrict(district) {
+    if (district.bairro !== '') {
         const districtInput = document.getElementById('district');
-        districtInput.value = result.bairro;
+        districtInput.value = district.bairro;
         districtInput.disabled = true;
         return true
     }
     return false
 }
 
-export function validateState(result) {
-    if (result.uf !== '') {
+export function validateState(state) {
+    if (state.uf !== '') {
         const stateInput = document.getElementById('state');
-        stateInput.value = result.uf;
+        stateInput.value = state.uf;
         return true
     }
     return false
