@@ -11,32 +11,32 @@ export function insertHtml() {
     const complement = document.querySelector('#addressComplement').value;
     const addressNumber = document.querySelector('#addressNumber').value;
     const message = calculateDays();
+    console.log(state);
+    let messageAdress;
 
-    if (complement === '') {
+    if(complement === '' && city !=='' && state !=='') 
+        messageAdress = `<p>${adress} , Cidade: ${city} ,  Uf: ${state} , nº: ${addressNumber} </p>`
+    else if(complement !== ''  && city !== '' && state !== '')
+        messageAdress = `<p> ${adress} , Cidade: ${city} , Uf: ${state} ,  nº: ${addressNumber} ,  Complemento:${complement} </p>`
+    else if(complement !== ''  && city !== '')
+        messageAdress = `<p> ${adress} , ${city} ,  ${addressNumber} ,  ${complement} </p>`
+    else if(complement === ''  && city !== '')
+        messageAdress = `<p> ${adress} , ${city} ,  ${addressNumber} </p>`
+
+    
         let finish = `
-        <p>Nome: `+ (name.toUpperCase()) + `</p><br>
-        <p>CPF: `+ cpf + `</p><br>
-        <p>Data de Nascimento: `+ date + `</p>
+        <p>Nome: ${(name.toUpperCase())} </p><br>
+        <p>CPF: ${cpf} </p><br>
+        <p>Data de Nascimento:  ${date} </p>
         <br>
-        <p>`+ adress + `,` + city + `, ` + state + `, ` + addressNumber + ` </p>
+        ${messageAdress}
         <br>
-        <p>`+ message + ` </p>
+        <p>${ message }  </p>
         `
         div.innerHTML = finish;
-    }
-    else {
-        let finish = `
-        <p>Nome: `+ (name.toUpperCase()) + `</p><br>
-        <p>CPF: `+ cpf + `</p><br>
-        <p>Data de Nascimento: `+ date + `</p>
-        <br>
-        <p>`+ adress + `,` + city + `, ` + state + `, ` + addressNumber + ` , ` + complement + `</p>
-        <br>
-        <p>`+ message + ` </p>
-        `
-        div.innerHTML = finish;
-    }
+        return;
 }
+
 export function toggleActiveClass(el, status) {
     if (status) {
         el.classList.add('sucess');
